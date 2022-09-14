@@ -32,6 +32,9 @@ public class ConnectivitySettingsUtils {
     public static final int PRIVATE_DNS_MODE_OFF = 1;
     public static final int PRIVATE_DNS_MODE_OPPORTUNISTIC = 2;
     public static final int PRIVATE_DNS_MODE_PROVIDER_HOSTNAME = 3;
+    public static final int PRIVATE_DNS_MODE_CLOUDFLARE = 4;
+    public static final int PRIVATE_DNS_MODE_AXIOM = 5;
+
 
     public static final String PRIVATE_DNS_DEFAULT_MODE = "private_dns_default_mode";
     public static final String PRIVATE_DNS_MODE = "private_dns_mode";
@@ -39,6 +42,9 @@ public class ConnectivitySettingsUtils {
     public static final String PRIVATE_DNS_MODE_OPPORTUNISTIC_STRING = "opportunistic";
     public static final String PRIVATE_DNS_MODE_PROVIDER_HOSTNAME_STRING = "hostname";
     public static final String PRIVATE_DNS_SPECIFIER = "private_dns_specifier";
+    public static final String PRIVATE_DNS_MODE_CLOUDFLARE_STRING = "cloudflare";
+    public static final String PRIVATE_DNS_MODE_AXIOM_STRING = "axiom";
+
 
     /**
      * Get private DNS mode as string.
@@ -54,6 +60,10 @@ public class ConnectivitySettingsUtils {
                 return PRIVATE_DNS_MODE_OPPORTUNISTIC_STRING;
             case PRIVATE_DNS_MODE_PROVIDER_HOSTNAME:
                 return PRIVATE_DNS_MODE_PROVIDER_HOSTNAME_STRING;
+            case PRIVATE_DNS_MODE_CLOUDFLARE:
+                return PRIVATE_DNS_MODE_CLOUDFLARE_STRING;
+            case PRIVATE_DNS_MODE_AXIOM:
+                return PRIVATE_DNS_MODE_AXIOM_STRING;
             default:
                 throw new IllegalArgumentException("Invalid private dns mode: " + mode);
         }
@@ -67,6 +77,10 @@ public class ConnectivitySettingsUtils {
                 return PRIVATE_DNS_MODE_PROVIDER_HOSTNAME;
             case "opportunistic":
                 return PRIVATE_DNS_MODE_OPPORTUNISTIC;
+            case "cloudflare":
+                return PRIVATE_DNS_MODE_CLOUDFLARE;
+            case "axiom":
+                return PRIVATE_DNS_MODE_AXIOM;
             default:
                 throw new IllegalArgumentException("Invalid private dns mode: " + mode);
         }
@@ -96,6 +110,8 @@ public class ConnectivitySettingsUtils {
      */
     public static void setPrivateDnsMode(@NonNull Context context, int mode) {
         if (!(mode == PRIVATE_DNS_MODE_OFF
+                || mode == PRIVATE_DNS_MODE_CLOUDFLARE
+                || mode == PRIVATE_DNS_MODE_AXIOM
                 || mode == PRIVATE_DNS_MODE_OPPORTUNISTIC
                 || mode == PRIVATE_DNS_MODE_PROVIDER_HOSTNAME)) {
             throw new IllegalArgumentException("Invalid private dns mode: " + mode);
